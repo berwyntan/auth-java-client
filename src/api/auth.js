@@ -7,7 +7,7 @@ export const apiLogin = async (data) => {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true
       },
-      // withCredentials: true,
+      withCredentials: true,
     });
     //   console.log(response)
     return response;
