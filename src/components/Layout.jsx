@@ -1,7 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 import { useDetailsStore } from "../hooks/useDetailsStore";
+import { useTranslation } from "react-i18next";
 
 const Layout = () => {
+  const { t } = useTranslation()
   const authDetails = useDetailsStore((state) => state.authDetails);
   const setAuthDetails = useDetailsStore((state) => state.setAuthDetails);
   const { id } = authDetails;
@@ -12,7 +14,7 @@ const Layout = () => {
         {checkId && (
           <Link to="/auth">
             <button className="border rounded-lg p-2 border-gray-400 mx-2">
-              WELCOME PAGE
+              {t("welcomePage")}
             </button>
           </Link>
         )}
@@ -22,13 +24,13 @@ const Layout = () => {
               className="border rounded-lg p-2 border-gray-400"
               onClick={() => setAuthDetails({})}
             >
-              LOG OUT
+              {t("logout")}
             </button>
           </Link>
         ) : (
           <Link to="/">
             <button className="border rounded-lg p-2 border-gray-400">
-              LOG IN
+            {t("login")}
             </button>
           </Link>
         )}

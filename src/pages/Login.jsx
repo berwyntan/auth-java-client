@@ -15,15 +15,15 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     apiLogin(data).then((response) => {
-      if (response.status === 404) {
+      if (response?.status === 404) {
         setError("Invalid user id.");
-      } else if (response.status === 403) {
+      } else if (response?.status === 403) {
         setError("Invalid password.");
-      } else if (response.status === 200) {
+      } else if (response?.status === 200) {
         setError("");
         setAuthDetails(response.data);
         navigate("/auth");
-      } else {
+      } else if (!response) {
         setError("Server error.");
       }
     });
