@@ -1,9 +1,12 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
+import { useDetailsStore } from "../hooks/useDetailsStore";
 
 const CheckAuth = () => {
-  return (
-    <Outlet />
-  )
-}
+  const authDetails = useDetailsStore((state) => state.authDetails);
+  const { id } = authDetails;
+  const checkId = id?.timestamp;
 
-export default CheckAuth
+  return <>{checkId ? <Outlet /> : <div>Access Denied</div>}</>;
+};
+
+export default CheckAuth;

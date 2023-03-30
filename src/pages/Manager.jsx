@@ -1,9 +1,15 @@
-import React from 'react'
+import { useDetailsStore } from "../hooks/useDetailsStore";
 
 const Manager = () => {
-    return (
-        <div>Manager</div>
-    )
-}
+  const authDetails = useDetailsStore((state) => state.authDetails);
+  const { userFullName } = authDetails;
 
-export default Manager
+  return (
+    <>
+      <div className="font-medium">For Managers Only</div>
+      <div className="my-2">Hello, {userFullName}</div>
+    </>
+  );
+};
+
+export default Manager;
