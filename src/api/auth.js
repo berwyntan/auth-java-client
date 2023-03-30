@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const apiLogin = async (data) => {
   try {
-    const response = await axios.post("http://43.206.121.97:80/auth", data, {
+    const response = await axios.post("http://127.0.0.1:8080/auth", data, {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true
