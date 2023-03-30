@@ -1,8 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { useDetailsStore } from "../hooks/useDetailsStore";
 import { useTranslation } from "react-i18next";
-import i18next from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
 const Layout = () => {
   const { t } = useTranslation()
@@ -10,7 +8,7 @@ const Layout = () => {
   const setAuthDetails = useDetailsStore((state) => state.setAuthDetails);
   const { id } = authDetails;
   const checkId = id?.timestamp;
-  i18next.use(LanguageDetector).init(i18nextOptions);
+  
   return (
     <>
       <div className="flex justify-end items-center">
