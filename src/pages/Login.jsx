@@ -3,11 +3,14 @@ import { apiLogin } from "../api/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDetailsStore } from "../hooks/useDetailsStore";
+import { useTranslation } from "react-i18next";
+
 
 const Login = () => {
   const navigate = useNavigate();
   const setAuthDetails = useDetailsStore((state) => state.setAuthDetails);
   const [error, setError] = useState("");
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -16,15 +19,15 @@ const Login = () => {
   const onSubmit = (data) => {
     apiLogin(data).then((response) => {
       if (response?.status === 404) {
-        setError("Invalid user id.");
+        setError(t("invalidUserId"));
       } else if (response?.status === 403) {
-        setError("Invalid password.");
+        setError(t("invalidPassword"));
       } else if (response?.status === 200) {
         setError("");
         setAuthDetails(response.data);
         navigate("/auth");
       } else if (!response) {
-        setError("Server error.");
+        setError(t("serverError"));
       }
     });
   };
@@ -54,9 +57,9 @@ const Login = () => {
           {...register("password", { required: true })}
         />
 
-        {errors.userId && <span>User id is required</span>}
+        {errors.userId && <span>{t("userIdRequired")}</span>}
         {Boolean(errors.userId) ||
-          (errors.password && <span>Password is required</span>)}
+          (errors.password && <span>{t("passwordRequired")}</span>)}
 
         <input type="submit" className="rounded p-2 bg-gray-400 my-2" />
       </form>
