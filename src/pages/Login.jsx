@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { apiLogin } from "../api/auth";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDetailsStore } from "../hooks/useDetailsStore";
 import { useTranslation } from "react-i18next";
 
@@ -31,7 +31,7 @@ const Login = () => {
     });
   };
   const changeLng = (id) => {
-    window.location.replace(`http://127.0.0.1:5173?lng=${id}`);
+    window.location.replace(`${import.meta.env.VITE_CLIENT}?lng=${id}`);
   };
 
   return (
