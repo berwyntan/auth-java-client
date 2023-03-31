@@ -1,16 +1,15 @@
 import { useForm } from "react-hook-form";
 import { apiLogin } from "../api/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDetailsStore } from "../hooks/useDetailsStore";
 import { useTranslation } from "react-i18next";
-
 
 const Login = () => {
   const navigate = useNavigate();
   const setAuthDetails = useDetailsStore((state) => state.setAuthDetails);
   const [error, setError] = useState("");
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -31,10 +30,13 @@ const Login = () => {
       }
     });
   };
+  const changeLng = (id) => {
+    window.location.replace(`http://127.0.0.1:5173?lng=${id}`);
+  };
 
   return (
     <>
-      <div className="text-lg font-medium my-2">LOG IN</div>
+      <div className="text-lg font-medium my-2">{t("login")}</div>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -61,9 +63,27 @@ const Login = () => {
         {Boolean(errors.userId) ||
           (errors.password && <span>{t("passwordRequired")}</span>)}
 
-        <input type="submit" className="rounded p-2 bg-gray-400 my-2" />
+        <input
+          type="submit"
+          className="rounded p-2 bg-gray-400 my-2"
+          value={t("submit")}
+        />
       </form>
       {error}
+      <div className="flex justify-center my-4">
+        <div
+          className="mx-3 underline cursor-pointer"
+          onClick={() => changeLng("en")}
+        >
+          English
+        </div>
+        <div
+          className="mx-3 underline cursor-pointer"
+          onClick={() => changeLng("zh")}
+        >
+          中文
+        </div>
+      </div>
     </>
   );
 };
