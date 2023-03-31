@@ -84,6 +84,11 @@ const Login = () => {
           中文
         </div>
       </div>
+      <div className="my-10 flex flex-col">
+        <div className="font-medium">{t("authDetails")}</div>
+        <div className="my-2">{t("userName")} testuser | {t("password")} 12345 | {t("role")} user</div>
+        <div className="my-2">{t("userName")} testmanager | {t("password")} 12345 | {t("role")} manager</div>
+      </div>
     </>
   );
 };
