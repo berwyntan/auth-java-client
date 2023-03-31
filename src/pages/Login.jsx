@@ -31,7 +31,7 @@ const Login = () => {
     });
   };
   const changeLng = (id) => {
-    window.location.replace(`${import.meta.env.VITE_CLIENT}?lng=${id}`);
+    window.location.replace(`${import.meta.env.VITE_CLIENT}/?lng=${id}`);
   };
 
   return (
